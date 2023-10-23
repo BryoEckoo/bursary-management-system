@@ -24,6 +24,7 @@ require('./config/passport')(passport);
 //corsmiddleware
 app.use(cors());
 
+//connecting to mongoDB database
 mongoose.connect(db, { useNewUrlParser:true, useUnifiedTopology: true, }).then(()=>{
     console.log("connected to mongodb")
 }).catch(err => console.log(`unable to connect to database ${err}`))

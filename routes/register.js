@@ -8,35 +8,37 @@ const User = require('../models/User');
 
 //registering user
 router.post('/register', (req, res) => {
-    let {email, password} = req.body
-    //check for unique email
-    User.findOne({ email: email}).then(user => {
-        if(user){
-            return res.status(400).json({
-                msg:"email exists"
-            });
-        }
-    });
-    //register if data is valid
-    const newUser = new User({
-        email,
-        password
-        });
+    const { email, password } = req.body;
 
-        //hash the password
-        bcrypt.genSalt(10, (err, salt) => {
-            if(err) throw err;
-            bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if(err) throw err;
-                newUser.password = hash;
-                newUser.save().then(user => {
-                    return res.status(201).json({
-                        success: true,
-                        msg:"user registerd"
+    // Check for a unique email
+    User.findOne({ email: email }).then((user) => {
+        if (user) {
+            return res.status(400).json({
+                msg: "email exists"
+            });
+        } else {
+            // Register the user if the data is valid
+            const newUser = new User({
+                email,
+                password
+            });
+
+            // Hash the password
+            bcrypt.genSalt(10, (err, salt) => {
+                if (err) throw err;
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    if (err) throw err;
+                    newUser.password = hash;
+                    newUser.save().then((user) => {
+                        return res.status(201).json({
+                            success: true,
+                            msg: "user registered"
+                        });
                     });
                 });
             });
-         }); 
+        }
+    });
 });
 
 //singing in user
@@ -59,6 +61,7 @@ router.post('/login', (req,res) => {
                 jwt.sign(payload, key, { expiresIn: 604800}, (err, token) => {
                     res.status(200).json({
                         success: true,
+                        user: user,
                         token: `Bearer ${token}`,
                         msg:"succesfully loged in"
                     })
@@ -79,4 +82,7 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
         user: req.user
     });
 });
+
+router.post('/register', registerUser);
+
 module.exports = router;
