@@ -250,13 +250,7 @@
         </div>
       </div>
       <div class="text-center">
-        <button
-          class="proceed"
-          @click="proceedToInstitution"
-          :disabled="!isFormValid"
-        >
-          SUBMIT
-        </button>
+        <button class="proceed" @click="onSubmit">SUBMIT</button>
       </div>
     </form>
     <form id="docup" enctype="multipart/form-data" name="docup" method="post">
@@ -268,7 +262,8 @@
 <script>
 import HeaderPage from "./headerPage.vue";
 import infoPage from "./infoPage.vue";
-
+import axios from 'axios';
+import { APIURL } from '../../../config/key';
 
 export default {
   name: "DetailsPage",
@@ -297,66 +292,56 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      // Save form data to localStorage
-      localStorage.setItem("formData", JSON.stringify(this.formData));
+    async onSubmit() {
+      try {
+        // Create an object with the form data
+        const formData = {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          gender: this.gender,
+          parentalStatus: this.parentalStatus,
+          userId: this.userId,
+          userEmail: this.userEmail,
+          specialNeed: this.specialNeed,
+          category: this.category,
+          instTelephone: this.instTelephone,
+          instType: this.instType,
+          currentClass: this.currentClass,
+          admissionNo: this.admissionNo,
+          bankName: this.bankName,          
+        };
 
-      // Optionally, you can provide feedback to the user
-      alert("Form data saved successfully!");
-    },
-    clearFormData() {
-      localStorage.removeItem("formData");
-      this.formData = {
-        firstName: "",
-        lastName: "",
-        dateOb: "",
-        gender: "",
-        parent: "",
-        countyBirth: "",
-        subCounty: "",
-        ward: "",
-        residence: "",
-        idNo: "",
-        phone: "",
-        email: "",
-        specialNeed: "",
-        typeOfNeed: "",
-      };
-    },
-    isFormValid() {
-      const formData = this.formData; // Replace with your form data object
-      // Add validation logic here, e.g., check if all required fields are filled
-      return (
-        formData.firstName &&
-        formData.lastName &&
-        formData.dateOb &&
-        formData.gender &&
-        formData.gender &&
-        formData.parent &&
-        formData.specialNeed &&
-        formData.phone &&
-        formData.idNo &&
-        formData.residence &&
-        formData.ward &&
-        formData.subCounty &&
-        formData.countyBirth
-      );
-    },
-    proceedToInstitution() {
-      if (this.isFormValid()) {
-        this.$router.push("/profile");
-      } else {
-        // Optionally, provide feedback to the user about the incomplete form
-        alert("Please fill out all the required fields before proceeding.");
+        // Send a POST request to your backend API
+        const response = await axios.post(`${APIURL}/applications/submit`, formData);
+
+        if (response.data.success) {
+          // Handle success, e.g., show a success message
+          alert('Application submitted successfully');
+        } else {
+          // Handle errors, e.g., show an error message
+          alert('Error submitting application');
+        }
+      } catch (error) {
+        // Handle any network or request errors
+        console.error(error);
+        alert('An error occurred. Please try again.');
       }
-    },
-  },
-  created() {
-    const savedData = localStorage.getItem("formData");
-    if (savedData) {
-      this.formData = JSON.parse(savedData);
     }
+    // proceedToInstitution() {
+    //   if (this.isFormValid()) {
+    //     this.$router.push("/profile");
+    //   } else {
+    //     // Optionally, provide feedback to the user about the incomplete form
+    //     alert("Please fill out all the required fields before proceeding.");
+    //   }
+    // },
   },
+  // created() {
+  //   const savedData = localStorage.getItem("formData");
+  //   if (savedData) {
+  //     this.formData = JSON.parse(savedData);
+  //   }
+  // },
 };
 </script>
 <style>

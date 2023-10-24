@@ -33,6 +33,9 @@ mongoose.connect(db, { useNewUrlParser:true, useUnifiedTopology: true, }).then((
 const users = require('./routes/register');
 app.use('/users', users);
 
+const applications = require('./routes/application');
+app.use('/applications', applications);
+
 app.listen(port)
 
 console.log("server started at " + port)
