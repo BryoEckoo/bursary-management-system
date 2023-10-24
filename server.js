@@ -3,40 +3,42 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyparser = require('body-parser');
-const port = process.env.PORT || 4000;
-const db = require('./config/key').mongoURL
 const passport = require('passport');
-//middleware
-//form data middleware
-app.use(bodyparser.urlencoded({
-    extended:false
-}));
+const port = process.env.PORT || 4000;
+const db = require('./config/key').mongoURL;
 
-// json body middleware
+// Middleware
+// JSON body middleware should come first
 app.use(bodyparser.json());
-
-//use passport middleware
-app.use(passport.initialize());
-
-//bring in the passport strategy
-require('./config/passport')(passport);
-
-//corsmiddleware
+app.use(bodyparser.urlencoded({ extended: false }));
 app.use(cors());
 
-//connecting to mongoDB database
-mongoose.connect(db, { useNewUrlParser:true, useUnifiedTopology: true, }).then(()=>{
-    console.log("connected to mongodb")
-}).catch(err => console.log(`unable to connect to database ${err}`))
+// Use passport middleware and define passport strategy
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
-//defining the user route
+// Connect to the MongoDB database
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch(err => {
+    console.log(`Unable to connect to the database: ${err}`);
+  });
+
+// Define and use routes
 const users = require('./routes/register');
 app.use('/users', users);
+
+const user = require('./routes/login');
+app.use('/user', user);
 
 const applications = require('./routes/application');
 app.use('/applications', applications);
 
-app.listen(port)
+const documents = require('./routes/documents');
+app.use('/documents', documents);
 
-console.log("server started at " + port)
-
+app.listen(port, () => {
+  console.log(`Server started at port ${port}`);
+});

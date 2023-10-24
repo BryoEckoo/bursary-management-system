@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group row">
-              <div class="col-md-4 input-red" for="first_name">First Name</div>
+              <div class="col-md-4 input-red" for="first_name">First Name *</div>
               <div class="col-md-8">
                 <input
                   type="text"
@@ -31,7 +31,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-md-4 input-red" for="last_name">Last Name</div>
+              <div class="col-md-4 input-red" for="last_name">Last Name *</div>
               <div class="col-md-8">
                 <input
                   type="text"
@@ -49,7 +49,6 @@
                 <select
                   name="gender"
                   v-model="gender"
-                  required="required"
                   class="form-control select select2-hidden-accessible"
                 >
                   <option value="">Select Gender</option>
@@ -67,7 +66,6 @@
                   name="parental_status"
                   v-model="parentalStatus"
                   class="form-control select select2-hidden-accessible"
-                  required="required"
                 >
                   <option value="Both Parents Alive">Both Parents Alive</option>
                   <option value="Total Orphan">Total Orphan</option>
@@ -92,7 +90,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-md-4 input-red" for="phone">Phone</div>
+              <div class="col-md-4 input-red" for="phone">Phone *</div>
               <div class="col-md-8">
                 <input
                   type="text"
@@ -105,12 +103,13 @@
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-md-4 input-red" for="email">Email</div>
+              <div class="col-md-4 input-red" for="email">Email *</div>
               <div class="col-md-8">
                 <input
                   type="email"
                   name="email"
                   class="form-control"
+                  required="required"
                   v-model="userEmail"
                 />
               </div>
@@ -123,7 +122,6 @@
                 <select
                   name="special_need"
                   v-model="specialNeed"
-                  required="required"
                   class="validate[required] form-control select select2-hidden-accessible"
                 >
                   <option value="No">No</option>
@@ -152,7 +150,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-4 input-red" for="name">Institution Name </div>
+                    <div class="col-md-4 input-red" for="name">Institution Name *</div>
                     <div class="col-md-8">
                         <input type="text" name="name" v-model="instName" id="name_" class="form-control"  required="required">
                     </div>
@@ -175,9 +173,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-4 input-red" for="bank_name">Bank </div>    
+                    <div class="col-md-4 input-red" for="bank_name">Bank *</div>    
                     <div class="col-md-8">
-                        <select name="bank_name" v-model="bankName" placeholder="Select Bank" class="select form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                        <select name="bank_name" v-model="bankName" placeholder="Select Bank" required="required" class="select form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
                             <option value="1">Bank of Baroda</option>
                             <option value="3">Barclays Bank</option>
                             <option value="4">Cooperative Bank</option>
@@ -200,8 +198,6 @@
                             </div>
                         </div>
                     </div>
-                <!-- </div> -->
-                <!-- <div class="row"> -->
                     <div class="col-md-4 text-center">
                         <div class="row">
                             <div class="col-md-6">
@@ -212,8 +208,6 @@
                             </div>
                         </div>
                     </div>
-                <!-- </div> -->
-                <!-- <div class="row"> -->
                     <div class="col-md-4 text-center">
                         <div class="row">
                             <div class="col-md-6">
@@ -224,8 +218,6 @@
                             </div>
                         </div>
                     </div>
-                <!-- </div> -->
-
             </div>
         </div>
       </div>
@@ -236,21 +228,22 @@
             <div class="col-sm-6">
                 <div class="form-group row">
                     <p class="col-md-4">Death Certificate :</p>
-                <input class="col-md-8" type="file" id="ftndoc" name="ftndoc"><br>
+                <input class="col-md-8" type="file" @change="onFileChange('deathCertificate')" id="deathCertificate" name="deathCertificate"><br>
                 </div>   
             </div>
             <div class="col-sm-6">
                 <div class="form-group row">
-                    <p class="col-md-4">Fee statement :</p>
-                    <input class="col-md-8" type="file" id="ftndoc" name="ftndoc"><br>
+                    <p class="col-md-4">Fee statement *:</p>
+                    <input class="col-md-8" type="file" @change="onFileChange('feeStatement')" required="required" id="feeStatement" name="feeStatement"><br>
                 </div>
             </div>
-            
-            
         </div>
       </div>
       <div class="text-center">
         <button class="proceed" @click="onSubmit">SUBMIT</button>
+      </div><br>
+      <div class="text-center">
+        <button class="proceed" @click="submit">SUBMIT doc</button>
       </div>
     </form>
     <form id="docup" enctype="multipart/form-data" name="docup" method="post">
@@ -289,27 +282,41 @@ export default {
         currentClass:"",
         admissionNo:"",
         bankName:"",
+        selectedDeathCertificate: null,
+        selectedFeeStatement: null,
     };
   },
   methods: {
+    onFileChange(field) {
+      // Function to handle file input changes
+      const fileInput = this.$refs[field];
+      this[field] = fileInput.files[0];
+    },
     async onSubmit() {
+      if (!this.firstName || !this.lastName || !this.userEmail || !this.userPhone || !this.instName || !this.bankName) {
+      alert('Please fill in the required spaces.');
+      return;
+    }
       try {
         // Create an object with the form data
-        const formData = {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          gender: this.gender,
-          parentalStatus: this.parentalStatus,
-          userId: this.userId,
-          userEmail: this.userEmail,
-          specialNeed: this.specialNeed,
-          category: this.category,
-          instTelephone: this.instTelephone,
-          instType: this.instType,
-          currentClass: this.currentClass,
-          admissionNo: this.admissionNo,
-          bankName: this.bankName,          
-        };
+        const formData = new FormData();
+
+        // Add form fields to formData
+        formData.append('firstName', this.firstName);
+        formData.append('lastName', this.lastName);
+        formData.append('gender', this.gender);
+        formData.append('parentalStatus', this.parentalStatus);
+        formData.append('userId', this.userId);
+        formData.append('userEmail', this.userEmail);
+        formData.append('specialNeed', this.specialNeed);
+        formData.append('category', this.category);
+        formData.append('instTelephone', this.instTelephone);
+        formData.append('instType', this.instType);
+        formData.append('currentClass', this.currentClass);
+        formData.append('admissionNo', this.admissionNo);
+        formData.append('bankName', this.bankName);
+        formData.append('deathCertificate', this.selectedDeathCertificate);
+        formData.append('feeStatement', this.selectedFeeStatement);
 
         // Send a POST request to your backend API
         const response = await axios.post(`${APIURL}/applications/submit`, formData);
@@ -317,6 +324,7 @@ export default {
         if (response.data.success) {
           // Handle success, e.g., show a success message
           alert('Application submitted successfully');
+          this.$router.push('/profile')
         } else {
           // Handle errors, e.g., show an error message
           alert('Error submitting application');
@@ -326,22 +334,21 @@ export default {
         console.error(error);
         alert('An error occurred. Please try again.');
       }
-    }
-    // proceedToInstitution() {
-    //   if (this.isFormValid()) {
-    //     this.$router.push("/profile");
-    //   } else {
-    //     // Optionally, provide feedback to the user about the incomplete form
-    //     alert("Please fill out all the required fields before proceeding.");
-    //   }
-    // },
+      // Send a POST request to your backend API for documents
+      const docData = new FormData();
+      docData.append('deathCertificate', this.selectedDeathCertificate);
+      docData.append('feeStatement', this.selectedFeeStatement);
+
+      try {
+        await axios.post(`${APIURL}/documents/upload`, docData);
+        // Handle the document data response if needed
+      } catch (docError) {
+        // Handle any errors related to document submission
+        console.error('Error uploading documents:', docError);
+        // Optionally, show an error message to the user
+      }
+    },
   },
-  // created() {
-  //   const savedData = localStorage.getItem("formData");
-  //   if (savedData) {
-  //     this.formData = JSON.parse(savedData);
-  //   }
-  // },
 };
 </script>
 <style>
