@@ -24,18 +24,18 @@
                   <hr class="mt-4">
                   <h4 class="text-center mt-4">Sign In</h4>
                 </div>
-                <form id="login" class="login-form" @click.prevent="loginUs" method="post" @submit.prevent="loginUser">
+                <form id="login" class="login-form" @submit.prevent="login" method="post">
                   <div class="form-group mb-3">
                     <label class="label" for="username">Username</label>
-                    <input type="text" id="username" v-model="userData.userEmail" name="username" class="form-control" placeholder="Email Address" autocomplete="off" required autofocus>
+                    <input type="text" id="username" v-model="form.email" name="username" class="form-control" placeholder="Email Address" autocomplete="off" required autofocus>
                   </div>
                   <div class="form-group mb-3">
                     <label class="label" for="password">Password</label>
-                    <input type="password" id="password" v-model="userData.userPassword" class="form-control" name="password" placeholder="Password" autocomplete="current-password" required>
+                    <input type="password" id="password" v-model="form.password" class="form-control" name="password" placeholder="Password" autocomplete="current-password" required>
                   </div>
                   <input type="hidden" name="_csrf_token" value="f9762c9.pk7O-twetHP3t17lExefTz64-IrXimtJgaMONUz3fgc.lBm7gpFT0ja9_QfcKifHBH_Lj8au4z0T1MB7f3yEHHLSOPm7qV_QF57Oag">
                   <div class="form-group">
-                    <button  class="proceed" @click="loginUse">LOGIN</button>	
+                    <input type="submit" class="proceed" value="Log in" />	
                     <router-link to="/register" class="proceed" >REGISTER</router-link>
                   </div>
                   <div class="form-group d-md-flex">
@@ -48,7 +48,7 @@
                   </div>
               </form>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
     </div>
@@ -56,73 +56,42 @@
   
 </template>
 <script>
-import {mapActions} from 'vuex';
+import axios from "axios";
+import {APIURL} from '../../../config/key'
 
 export default{
   name:'HomePage',
-  components:{
-          
-  },
   data() {
-  return {
-    userData: {
-      userEmail: "",
-      userPassword: "",
+    return {
+      form: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    async login() {
+      const { email, password } = this.form;
+      if (!email || !password) {
+        alert("Username and password are required");
+        return;
+      }
+      
+      try {
+        const {
+          data: { token },
+        } = await axios.post(`${APIURL}/user/login`, {
+          email,
+          password,
+        });
+        localStorage.setItem("token", token);
+        this.$router.push("/details");
+      } catch (error) {
+        alert("Invalid username or password.");
+      }
+    },
     },
   };
-},
-methods: {
-  ...mapActions(['login']),
-  loginUs(){
-    let user = {
-      email:this.userData.userEmail,
-      password:this.userData.userPassword
-    };
-    this.login(user)
-    .then(res => {
-      if(res.data.success){
-        this.$router.push('/details');
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  },
-    async loginUser() {
-
-      // const email = this.userData.userEmail;
-      // const password = this.userData.userPassword;
-
-      // try {
-      //   // Make a POST request to your server's login endpoint
-      //   const response = await fetch('/', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({ email, password }),
-      //   });
-
-      //   if (response.ok) {
-      //     // Authentication successful
-      //     //const userData = await response.json();
-      //     // You can now use userData.email and other data as needed
-      //     this.$router.push('/details');
-      //   } else {
-      //     // Authentication failed
-      //     this.showErrorAlert = true;
-      //   }
-      // } catch (error) {
-      //   console.error(error);
-      //   this.showErrorAlert = true;
-      // }
-    },
-  },
-  closeErrorAlert() {
-    
-  },
-
-};
 </script>
 <style>
 .six{
