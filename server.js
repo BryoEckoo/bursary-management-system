@@ -29,10 +29,6 @@ mongoose.connect(db, { useNewUrlParser:true, useUnifiedTopology: true, }).then((
     console.log("connected to mongodb")
 }).catch(err => console.log(`unable to connect to database ${err}`))
 
-app.get('/', (req, res) =>{
-    res.send("<h1>hello world</h1>");
-} );
-
 //defining the user route
 const users = require('./routes/register');
 app.use('/users', users);

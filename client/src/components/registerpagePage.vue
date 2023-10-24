@@ -37,7 +37,9 @@
 <script>
 // Import Axios library
 import axios from 'axios';
-import { registerUser} from'../../../routes/register';
+import {APIURL} from '../../../config/key'
+import router from '@/router';
+//import { registerUser} from'../../../routes/register';
 
 export default {
   name: 'registerPage',
@@ -48,95 +50,54 @@ export default {
     }
   },
   methods: {
-    async mounted(){
-      const response = await axios.get("users")
-
-    },
-    async register() {
-      try {
-        // Create an object to hold the user data
-        const userData = {
-          email: this.email,
-          password: this.password,
-        };
-
-        // Make an HTTP POST request to your backend's registration endpoint
-        const response = await registerUser(userData);
-
-        // Check the response status and provide feedback to the user
-        if (response.status === 201) {
-          // Registration successful
-          console.log('Registration successful:', response.data);
-          // Optionally, you can redirect the user to a success page or perform other actions.
-        } else {
-          // Registration failed
-          console.error('Registration Fail:', response.data);
-          // Optionally, display an error message to the user.
-        }
-      } catch (error) {
-        console.error('Registration fail:', error);
-        // Handle any unexpected errors (e.g., network issues).
-        // Optionally, display an error message to the user.
+    async register(){
+      const { email, password } = this.form;
+      if (!email || !password) {
+        alert("Username and password required");
       }
-    }
-  }
-}
-//import axios from 'axios';
-//import authenticationService from '@/services/AuthenticationService';
+      try {
+        await axios.post(`${APIURL}/users/register`, {
+          email,
+          password,
+        });
+        router.push('/');
+        alert('registration successful');
+      } catch (error){
+        alert("registration failed.");
+      }
+    },
+  },
+  // methods: {
+  //   // async mounted(){
+  //   //   const response = await axios.get("users")
 
-//export default {
-    // name: 'registerPage',
-    // data() {
-    //     return {
-    //         email: "",
-    //         password: "",
-    //     }
-    // },
-    // methods: {
-    //     async register() {
-    //         try {
-    //             await authenticationService.loadUserCollection({
-    //                 email: this.email,
-    //                 password: this.password
-    //             });
-    //         } catch (error) {
-    //             console.error("Registration failed:", error);
-    //         }
-    //     }
-    
+  //   // },
+  //   async register() {
+  //     try {
+  //       // Create an object to hold the user data
+  //       const userData = {
+  //         email: this.email,
+  //         password: this.password,
+  //       };
 
+  //       // Make an HTTP POST request to your backend's registration endpoint
+  //       const response = await registerUser(userData);
 
-      
-      /*async registerUser() {
-        
-  try {
-    // Capture user registration data
-    const email = this.userData.userEmail;
-    const password = this.userData.userPassword;
-
-    // Make a POST request to your server's registration endpoint using Axios
-    const response = await axios.post('/api/register', {
-      email,
-      password,
-    });
-
-    if (response.status === 200) {
-      // Registration successful
-      // Optionally, provide feedback to the user
-      alert('Registration successful!');
-      this.$router.push('/');
-    } else {
-      // Registration failed
-      // Optionally, display an error message to the user
-      alert('Registration failed. Please try again.');
-    }
-  } catch (error) {
-    console.error(error);
-    // Handle any unexpected errors
-    alert('An error occurred during registration. Please try again later.');
-  }
-}*/
-
-  //},
-//}
+  //       // Check the response status and provide feedback to the user
+  //       if (response.status === 201) {
+  //         // Registration successful
+  //         console.log('Registration successful:', response.data);
+  //         // Optionally, you can redirect the user to a success page or perform other actions.
+  //       } else {
+  //         // Registration failed
+  //         console.error('Registration Fail:', response.data);
+          
+  //       }
+  //     } catch (error) {
+  //       console.error('Registration fail:', error);
+       
+  //     }
+  //   }
+  // }
+};
 </script>

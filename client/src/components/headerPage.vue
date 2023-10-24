@@ -1,12 +1,12 @@
 <template>
   <div class="header-pp">
-    <div class="navbar navbar-expand-lg d-flex align-items-center  row">
+    <div class="navbar navbar-expand-lg d-flex align-items-center ">
       <div class="col-md-4 text-center">
         <img src="../assets/ke.png" class="h-25 w-25" alt="Kenya Logo">
       </div>
       <div class="container-block text-center col-md-4">
-        <h4>COUNTY GOVERNMENT OF NANDI</h4>
-        <h5>BURSARY MANAGEMENT SYSTEM</h5>
+        <h4 class="text-center">COUNTY GOVERNMENT OF NANDI</h4>
+        <h5 class="text-center">BURSARY MANAGEMENT SYSTEM</h5>
       </div>
       <div class="col-md-4 text-center">
         <img src="../assets/logo1.jpg" class="h-25 w-25"  alt="County Logo">
@@ -28,9 +28,6 @@
            
             <li class="nav-item">
               <router-link to="/profile" class="nav-link fw-bold">My Profile</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/documents" class="nav-link fw-bold">Documents</router-link>
             </li>
             <li class="nav-item">
               <router-link to="/" class="nav-link fw-bold">Logout</router-link>
