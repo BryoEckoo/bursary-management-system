@@ -37,7 +37,7 @@
 <script>
 // Import Axios library
 import axios from 'axios';
-import {APIURL} from '../../../config/key'
+import {APIURL} from '../../../server/config/key'
 import router from '@/router';
 
 export default {

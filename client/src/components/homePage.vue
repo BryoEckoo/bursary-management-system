@@ -57,7 +57,7 @@
 </template>
 <script>
 import axios from "axios";
-import {APIURL} from '../../../config/key'
+import {APIURL} from '../../../server/config/key'
 
 export default{
   name:'HomePage',
