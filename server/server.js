@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyparser = require('body-parser');
 const passport = require('passport');
+require('dotenv').config();
 const port = process.env.PORT || 4000;
-const db = require('./config/key').mongoURL;
+const db = process.env.mongoURL;
 
 // Middleware
 // JSON body middleware should come first
