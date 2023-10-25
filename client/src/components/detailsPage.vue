@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group row">
-              <div class="col-md-4 input-red" for="first_name">First Name *</div>
+              <div class="col-md-4 input-red" for="first_name">First Name * :</div>
               <div class="col-md-8">
                 <input
                   type="text"
@@ -26,12 +26,12 @@
                   id="first_name_"
                   class="form-control"
                   v-model="firstName"
-                  required="required"
+                  required
                 />
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-md-4 input-red" for="last_name">Last Name *</div>
+              <div class="col-md-4 input-red" for="last_name">Last Name * :</div>
               <div class="col-md-8">
                 <input
                   type="text"
@@ -39,12 +39,12 @@
                   id="last_name_"
                   class="form-control"
                   v-model="lastName"
-                  required="required"
+                  required
                 />
               </div>
             </div>     
             <div class="form-group row">
-              <div class="col-md-4 input-red" for="gender">Gender</div>
+              <div class="col-md-4 input-red" for="gender">Gender :</div>
               <div class="col-md-8">
                 <select
                   name="gender"
@@ -59,7 +59,7 @@
             </div>
             <div class="form-group row">
               <div class="col-md-4 input-red" for="parental_status">
-                Parental Status
+                Parental Status :
               </div>
               <div class="col-md-8">
                 <select
@@ -75,10 +75,49 @@
                 </select>
               </div>
             </div>
+            <div class="form-group row">
+              <div class="col-md-4 input-red" for="last_name">Parent/ Guardian Name * :</div>
+              <div class="col-md-8">
+                <input
+                  type="text"
+                  name="parent_name"
+                  id="parent_name_"
+                  class="form-control"
+                  v-model="parentName"
+                  required
+                />
+              </div>
+            </div> 
+            <div class="form-group row">
+              <div class="col-md-4 input-red" for="occupation">Occupation :</div>
+              <div class="col-md-8">
+                <select name="occupation" v-model="occupation" class="form-control select select2-hidden-accessible" aria-placeholder="Select" >
+                  <option>Select </option>
+                  <option value="Employed">Employed</option>
+                  <option value="Self-employed">Self-employed</option>
+                  <option value="Contract">Contract</option>
+                  <option value="Unemployed">Unemployed</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            
           </div>
           <div class="col-sm-6">
             <div class="form-group row">
-              <div class="col-md-4 input-blue" for="id_no">ID Number</div>
+              <div class="col-md-4 input-red" for="family_income">Annual Family Gross Income :</div>
+              <div class="col-md-8">
+                <select id="familyincome" v-model="familyIncome" class="form-control" name="familyincome">
+                  <option>Select</option>
+                  <option>Less than 80,000</option>
+                  <option>Between 80,000 and 150,000</option>
+                  <option>Between 150,000 and 200,000</option>
+                  <option>More than 200,000</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4 input-blue" for="id_no">ID Number :</div>
               <div class="col-md-8">
                 <input
                   type="text"
@@ -90,7 +129,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-md-4 input-red" for="phone">Phone *</div>
+              <div class="col-md-4 input-red" for="phone">Phone * :</div>
               <div class="col-md-8">
                 <input
                   type="text"
@@ -98,25 +137,25 @@
                   v-model="userPhone"
                   id="phone_"
                   class="form-control"
-                  required="required"
+                  required
                 />
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-md-4 input-red" for="email">Email *</div>
+              <div class="col-md-4 input-red" for="email">Email * :</div>
               <div class="col-md-8">
                 <input
                   type="email"
                   name="email"
                   class="form-control"
-                  required="required"
+                  required
                   v-model="userEmail"
                 />
               </div>
             </div>
             <div class="form-group row">
               <div class="col-md-4 input-red" for="special_need">
-                Special Need
+                Special Need :
               </div>
               <div class="col-md-8">
                 <select
@@ -124,11 +163,24 @@
                   v-model="specialNeed"
                   class="validate[required] form-control select select2-hidden-accessible"
                 >
+                <option value="">Select</option>
                   <option value="No">No</option>
                   <option value="Yes">Yes</option>
                 </select>
               </div>
             </div>
+            <div class="form-group row">
+              <div class="col-md-4 input-red" for="ward">Ward * :</div>
+              <div class="col-md-8">
+                  <select name="ward"  placeholder="Select Bank" v-model="ward" required class="select form-control select2-hidden-accessible">
+                    <option value="">Select ward</option>
+                      <option value="Chepkumia">Chepkumia</option>
+                      <option value="Kapkangani">Kapkangani</option>
+                      <option value="Kapsabet">Kapsabet</option>
+                      <option value="Kilibwoni">Kilibwoni</option>
+                  </select>
+              </div>
+          </div>
           </div>
         </div>
       </div>
@@ -138,9 +190,10 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group row">
-                    <div class="col-md-4 input-red" for="category">Category </div>
+                    <div class="col-md-4 input-red" for="category">Category :</div>
                     <div class="col-md-8">
                         <select name="category"  placeholder="Select Bank" v-model="category" class="select form-control select2-hidden-accessible">
+                          <option value="">Select</option>
                             <option value="Secondary">Secondary</option>
                             <option value="TTC">TTC</option>
                             <option value="TVET">TVET</option>
@@ -150,32 +203,33 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-4 input-red" for="name">Institution Name *</div>
+                    <div class="col-md-4 input-red" for="name">Institution Name * :</div>
                     <div class="col-md-8">
-                        <input type="text" name="name" v-model="instName" id="name_" class="form-control"  required="required">
+                        <input type="text" name="name" v-model="instName" id="name_" class="form-control"  required>
                     </div>
                   </div>
                 <div class="form-group row">
-                    <div class="col-md-4 input-red" for="telephone">Institution Telephone </div><div class="col-md-8">
+                    <div class="col-md-4 input-red" for="telephone">Institution Telephone :</div><div class="col-md-8">
                       <input type="text" name="telephone" v-model="instTelephone"  id="telephone_" class="form-control">
                     </div>
                 </div>      
             </div>
             <div class="col-md-6">
                 <div class="form-group row">
-                    <div class="col-md-4 input-red" for="class">Current Class/Level </div><div class="col-md-8">
+                    <div class="col-md-4 input-red" for="class">Current Class/Level :</div><div class="col-md-8">
                         <input type="text" name="class" id="class_" v-model="currentClass" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-4 input-red" for="admission_number">Admission Number </div><div class="col-md-8">
+                    <div class="col-md-4 input-red" for="admission_number">Enter UPI No/Adm No/Reg No :</div><div class="col-md-8">
                       <input type="text" name="admission_number" id="admission_number_" v-model="admissionNo" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-4 input-red" for="bank_name">Bank *</div>    
+                    <div class="col-md-4 input-red" for="bank_name">Bank * :</div>    
                     <div class="col-md-8">
-                        <select name="bank_name" v-model="bankName" placeholder="Select Bank" required="required" class="select form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                        <select name="bank_name" v-model="bankName" placeholder="Select Bank" required class="select form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                          <option value="">Select</option>
                             <option value="1">Bank of Baroda</option>
                             <option value="3">Barclays Bank</option>
                             <option value="4">Cooperative Bank</option>
@@ -191,30 +245,30 @@
                     <div class="col-md-4 text-center">
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="sponsorname">Name/institution</label>
+                                <label for="sponsorname">Name/institution :</label>
                             </div>
                             <div class="col-md-6">
-                                <input id="sponsorname" class="form-control"  name="sponsorname" type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="relation">Your relationship</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input id="relation" class="form-control"  name="relation" type="text">
+                                <input id="sponsorname" v-model="sponsorInst" class="form-control"  name="sponsorname" type="text">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 text-center">
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="sponsorcontact">Contact</label>
+                                <label for="relation">Your relationship :</label>
                             </div>
                             <div class="col-md-6">
-                                <input id="sponsorcontact" class="form-control" name="sponsorcontact" type="text">
+                                <input id="relation" class="form-control" v-model="sponsorRelationship"  name="relation" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="sponsorcontact">Contact :</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input id="sponsorcontact" v-model="sponsorContact" class="form-control" name="sponsorcontact" type="text">
                             </div>
                         </div>
                     </div>
@@ -271,10 +325,14 @@ export default {
         lastName: "",
         gender: "",
         parentalStatus: "",
+        parentName: "",
+        occupation: "",
+        familyIncome:"",
         userId: "",
         userPhone: "",
         userEmail: "",
         specialNeed: "",
+        ward:"",
         category: "",
         instTelephone:"",
         instType:"",
@@ -282,6 +340,9 @@ export default {
         currentClass:"",
         admissionNo:"",
         bankName:"",
+        sponsorInst:"",
+        sponsorRelation:"",
+        sponsorContact:"",
         selectedDeathCertificate: null,
         selectedFeeStatement: null,
     };
@@ -293,7 +354,7 @@ export default {
       this[field] = fileInput.files[0];
     },
     async onSubmit() {
-      if (!this.firstName || !this.lastName || !this.userEmail || !this.userPhone || !this.instName || !this.bankName) {
+      if (!this.firstName || !this.lastName ||!this.parentName || !this.ward || !this.userEmail || !this.userPhone || !this.instName || !this.bankName) {
       alert('Please fill in the required spaces.');
       return;
     }
@@ -306,15 +367,23 @@ export default {
         formData.append('lastName', this.lastName);
         formData.append('gender', this.gender);
         formData.append('parentalStatus', this.parentalStatus);
+        formData.append('parentName', this.parentName);
+        formData.append('occupation', this.occupation);
+        formData.append('familyIncome', this.familyIncome);
         formData.append('userId', this.userId);
         formData.append('userEmail', this.userEmail);
         formData.append('specialNeed', this.specialNeed);
+        formData.append('ward', this.ward);
         formData.append('category', this.category);
         formData.append('instTelephone', this.instTelephone);
         formData.append('instType', this.instType);
+        formData.append('instName', this.instName);
         formData.append('currentClass', this.currentClass);
         formData.append('admissionNo', this.admissionNo);
         formData.append('bankName', this.bankName);
+        formData.append('sponsorInst', this.sponsorInst);
+        formData.append('sponsorRelationship', this.sponsorRelationship);
+        formData.append('sponsorContact', this.sponsorContact);
         formData.append('deathCertificate', this.selectedDeathCertificate);
         formData.append('feeStatement', this.selectedFeeStatement);
 

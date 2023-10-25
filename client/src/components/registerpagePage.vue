@@ -39,7 +39,6 @@
 import axios from 'axios';
 import {APIURL} from '../../../config/key'
 import router from '@/router';
-//import { registerUser} from'../../../routes/register';
 
 export default {
   name: 'registerPage',
