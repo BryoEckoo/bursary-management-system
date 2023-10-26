@@ -1,84 +1,57 @@
 <template>
   <!-- Bootstrap row -->
-  <div class="col" id="body-row">
+  <div class="col-sm-3 p-0"  id="body-row">
     <!-- Sidebar -->
     <div id="sidebar-container" :class="{ 'sidebar-expanded': isExpanded, 'sidebar-collapsed': !isExpanded }" class="d-none d-md-block">
       <!-- Bootstrap List Group -->
-      <ul class="list-group">
-        <!-- Separator with title -->
-        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-          <small>MAIN MENU</small>
-        </li>
+      <ul class="list-group" style="border: 0px solid;">
         <!-- /END Separator -->
         <!-- Menu with submenu -->
-        <a @click="toggleSubmenu(1)" :aria-expanded="isSubmenuExpanded[1]" class="bg-grey list-group-item list-group-item-action flex-column align-items-start">
+        <a href="#" class="bg-grey  mt-4 list-group-item list-group-item-action" style="border: 0px;">
           <div class="d-flex w-100 justify-content-start align-items-center">
-            <span class="fa fa-th-large mr-2"></span>
+            <span class="fa fa-th-large fa-fw mr-3"></span>
             <span class="menu-collapsed">Dashboard</span>
+          </div>
+        </a>
+        <a href="#" class="bg-grey list-group-item list-group-item-action" style="border: 0px;">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-file fa-fw mr-3"></span>
+            <span class="menu-collapsed">Applications</span>
+          </div>
+        </a>
+        <a href="#" class="bg-grey list-group-item list-group-item-action" style="border: 0px;">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-users fa-fw mr-3"></span>
+            <span class="menu-collapsed">Beneficiaries</span>
+          </div>
+        </a>
+        <a @click="toggleSubmenu(1)" :aria-expanded="isSubmenuExpanded[1]" class="bg-grey list-group-item list-group-item-action flex-column align-items-start" style="border: 0px; cursor:pointer;">
+          <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-th-large mr-3"></span>
+            <span class="menu-collapsed">Reports</span>
             <span class="submenu-icon ml-auto" v-if="isSubmenuExpanded[1]"></span>
           </div>
         </a>
         <!-- Submenu content -->
-        <div v-if="isSubmenuExpanded[1]" class="sidebar-submenu">
-          <a href="#" class="list-group-item list-group-item-action bg-grey text-white">
-            <span class="menu-collapsed">Chahgag</span>
+        <div v-if="isSubmenuExpanded[1]" class="sidebar-submenu" style="border-radius: 3px;">
+          <a href="#" class="list-group-item list-group-item-action bg-grey color">
+            <span class="menu-collapsed">Amount Reports</span>
           </a>
-          <a href="#" class="list-group-item list-group-item-action bg-grey text-white">
-            <span class="menu-collapsed">Reports</span>
+          <a href="#" class="list-group-item list-group-item-action bg-grey color">
+            <span class="menu-collapsed">Bursary Reports</span>
           </a>
-          <a href="#" class="list-group-item list-group-item-action bg-grey text-white">
-            <span class="menu-collapsed">Tables</span>
-          </a>
-        </div>
-        <a @click="toggleSubmenu(2)" :aria-expanded="isSubmenuExpanded[2]" class="bg-grey list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-start align-items-center">
-            <span class="fa fa-user fa-fw mr-3"></span>
-            <span class="menu-collapsed">Profile</span>
-            <span class="submenu-icon ml-auto" v-if="isSubmenuExpanded[2]"></span>
-          </div>
-        </a>
-        <!-- Submenu content -->
-        <div v-if="isSubmenuExpanded[2]" class="sidebar-submenu">
-          <a href="#" class="list-group-item list-group-item-action bg-grey text-white">
-            <span class="menu-collapsed">Settings</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action bg-grey text-white">
-            <span class="menu-collapsed">Password</span>
+          <a href="#" class="list-group-item list-group-item-action bg-grey color">
+            <span class="menu-collapsed">Wards Reports</span>
           </a>
         </div>
-        <a href="#" class="bg-grey list-group-item list-group-item-action">
+        <a href="#" class="bg-grey list-group-item list-group-item-action" style="border: 0px;">
           <div class="d-flex w-100 justify-content-start align-items-center">
             <span class="fa fa-tasks fa-fw mr-3"></span>
-            <span class="menu-collapsed">Tasks</span>
+            <span class="menu-collapsed">Users</span>
           </div>
         </a>
-        <!-- Separator with title -->
-        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-          <small>OPTIONS</small>
-        </li>
-        <!-- /END Separator -->
-        <a href="#" class="bg-grey list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-start align-items-center">
-            <span class="fa fa-calendar fa-fw mr-3"></span>
-            <span class="menu-collapsed">Calendar</span>
-          </div>
-        </a>
-        <a href="#" class="bg-grey list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-start align-items-center">
-            <span class="fa fa-envelope-o fa-fw mr-3"></span>
-            <span class="menu-collapsed">Messages <span class="badge badge-pill badge-primary ml-2">5</span></span>
-          </div>
-        </a>
-        <!-- Separator without title -->
-        <li class="list-group-item sidebar-separator menu-collapsed"></li>
-        <!-- /END Separator -->
-        <a href="#" class="bg-grey list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-start align-items-center">
-            <span class="fa fa-question fa-fw mr-3"></span>
-            <span class="menu-collapsed font-weight-bold">Help</span>
-          </div>
-        </a>
-        <a @click="toggleSidebar" class="bg-grey list-group-item list-group-item-action d-flex align-items-center">
+        
+        <a @click="toggleSidebar" class="bg-grey list-group-item list-group-item-action d-flex align-items-center" style="border: 0px;">
           <div class="d-flex w-100 justify-content-start align-items-center">
             <span id="collapse-icon" class="fa fa-2x mr-3"></span>
             <span id="collapse-text" class="menu-collapsed">Collapse</span>
@@ -131,9 +104,11 @@ export default {
 }
 
 /* Menu item*/
-#sidebar-container .list-group a {
+#sidebar-container .list-group a, .color {
     height: 50px;
     color: #6f6f6f;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 /* Submenu item*/

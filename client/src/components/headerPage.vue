@@ -1,5 +1,5 @@
 <template>
-  <div class="header-pp">
+  <div class="header-pp color">
     <div class="navbar navbar-expand-lg d-flex align-items-center ">
       <div class="col-md-4 text-center">
         <img src="../assets/ke.png" class="h-25 w-25" alt="Kenya Logo">
