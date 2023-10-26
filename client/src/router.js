@@ -8,7 +8,7 @@ import RegisterPage from './components/registerpagePage.vue';
 import ProfilePage from './components/profilePage.vue';
 import AdminLogin from './components/adminLogin.vue';
 import RecoverPage from './components/recoverPage.vue';
-import AdminPage from './components/adminPage.vue';
+import AdminPage from './components/admin/adminPage.vue';
 
 
 
@@ -22,7 +22,7 @@ const routes = [
   { path: '/profile', component: ProfilePage},
   { path: '/admin', component: AdminLogin},
   { path: '/recover', component: RecoverPage },
-  { path: '/admin-page', component: AdminPage }
+  { path: '/admin-p1', component: AdminPage }
 ];
 
 const router=createRouter({
