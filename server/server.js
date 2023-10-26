@@ -16,6 +16,7 @@ app.use(cors());
 app.use(cors({
   origin: 'https://bursary-management-system-frontend.vercel.app'
 }));
+ 
 
 // Use passport middleware and define passport strategy
 app.use(passport.initialize());
