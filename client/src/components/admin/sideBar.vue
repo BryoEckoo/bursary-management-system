@@ -50,7 +50,7 @@
             <i class="fa-solid fa-earth-oceania"></i><span class="menu-collapsed" @click="$router.push('/admin/reports/wards')">Wards Reports</span>
           </a>
         </div>
-        <a href="#" @mouseenter="toggleSidebarr" class="bg-grey list-group-item list-group-item-action" style="border: 0px;">
+        <a href="#"  class="bg-grey list-group-item list-group-item-action" style="border: 0px;">
           <div class="d-flex w-100 justify-content-start align-items-center">
             <i class="fa-solid fa-user"></i><span class="menu-collapsed" @click="$router.push('/admin/users')">Users</span>
           </div>
