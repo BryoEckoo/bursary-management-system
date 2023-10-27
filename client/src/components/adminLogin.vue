@@ -4,7 +4,7 @@
             
             <div class="card-header jalign-item-center" style="background-image: url('images/logo.png');background-position:center;background-repeat:no-repeat;height:50vh">
                 
-                <h4 class="text-center font-weight-bold">LOGIN HERE</h4>
+                <h4 class="text-center font-weight-bold" >LOGIN HERE</h4>
             </div>
             </div>
             <div class="col-md-6" style="margin-top: 6vh">
@@ -14,7 +14,7 @@
                 <input type="text" name="email" class="form-control" id="" placeholder="example@admin.com" value="">
                                 <label class="font-weight-bold">Enter Password :</label>
                 <input type="password" name="password" class="form-control" id="" placeholder="********">
-                                <input type="submit" class="btn btn-primary mt-2" value="LOGIN">
+                                <input type="submit" @click="$router.push('/admin/dashboard')" class="btn btn-primary mt-2" value="LOGIN">
                 </form>
                 <div class="row justify-content-between">
                    

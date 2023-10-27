@@ -5,18 +5,10 @@
           <sidebar />
           <div class="col-sm-9 text-center">
             <div class="main-wrapper">
-              <!-- Header -->
               <div class="header">
-                <!-- Include the header component here -->
                 <HeaderComponent />
               </div>
-              <!-- /Header -->
-          
-              <!-- Sidebar -->
               <SidebarComponent />
-              <!-- /Sidebar -->
-          
-              <!-- Page Wrapper -->
               <div class="page-wrapper">
                 <div class="content container-fluid">
                   <div class="page-header">
@@ -31,7 +23,77 @@
                   </div>
           
                   <div class="row">
-                    <!-- Add your Vue code for the card components here -->
+                    <div class="col-xl-3 col-sm-6 col-12">
+                      <div class="card bg-one">
+                        <div class="card-body">
+                          <div class="db-widgets d-flex justify-content-between align-items-center">
+                            <div class="db-icon">
+                              <i class="fa fa-users"></i>
+                            </div>
+                            <div class="db-info">
+                              <h3>
+                                {{$staff}}
+                              </h3>
+                              <h6>Staff</h6>
+                            </div>										
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <div class="col-xl-3 col-sm-6 col-12">
+                      <div class="card bg-two">
+                        <div class="card-body">
+                          <div class="db-widgets d-flex justify-content-between align-items-center">
+                            <div class="db-icon">
+                              <i class="fa fa-user"></i>
+                            </div>
+                            <div class="db-info">
+                              <h3>
+                            {{$student}}
+                              </h3>
+                              <h6>Students</h6>
+                            </div>										
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <div class="col-xl-3 col-sm-6 col-12">
+                      <div class="card bg-three">
+                        <div class="card-body">
+                          <div class="db-widgets d-flex justify-content-between align-items-center">
+                            <div class="db-icon">
+                              <i class="fa fa-receipt"></i>
+                            </div>
+                            <div class="db-info">
+                              <h3>
+                                {{$application}}
+                              </h3>
+                              <h6>Today's Applications</h6>
+                            </div>										
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <div class="col-xl-3 col-sm-6 col-12">
+                      <div class="card bg-four">
+                        <div class="card-body">
+                          <div class="db-widgets d-flex justify-content-between align-items-center">
+                            <div class="db-icon">
+                              <i class="fa fa-window-close"></i>
+                            </div>
+                            <div class="db-info">
+                              <h3>
+                                
+                              </h3>
+                              <h6>Today's Rollout</h6>
+                            </div>										
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
           
                   <div class="row">
@@ -99,7 +161,7 @@
 import sidebar from './sideBar.vue';
 import headerAdmin from './headerAdmin.vue';
 export default{
-    name:'AdminPage',
+    name:'AdminDashboard',
     components:{
        sidebar,
        headerAdmin,
