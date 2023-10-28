@@ -24,8 +24,83 @@
           </nav>
       </div>
       <!--Container Main start-->
-      <div class="height-100 bg-light">
-          <h4>AMOUNT REPORT</h4>
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+          <div class="page-header">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active">Amount Reports</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-md-12">
+              <a href="#" @click="printAllReports" class="btn btn-primary mb-3">Print All</a>
+              <a href="#" @click="openPrintByLocationModal" class="btn btn-secondary mb-3">Print By Location</a>
+              <div class="modal fade" id="Print" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="text-center">Print Bursement List</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form @submit.prevent="printReportsByLocation">
+                        <label class="font-weight-bold">Location:</label>
+                        <select v-model="selectedLocation" class="form-control font-weight-bold">
+                          <option value="">-Select Location Here-</option>
+                          <option>Munyaka</option>
+                          <option>Silas</option>
+                          <option>Ilula</option>
+                          <option>Block 10</option>
+                          <option>Marura</option>
+                          <option>Jerusalem</option>
+                        </select>
+                        <input type="submit" value="Print" name="print" class="btn font-weight-bold text-white btn-success form-control mt-2">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-chart">
+                <h4 class="font-weight-bold">TOTAL BURSEMENT AMOUNT: {{ formattedNumber }}</h4>
+                <div id="line_graph">
+                  <!-- Your graph content here -->
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-striped" id="sample">
+                    <thead>
+                      <tr>
+                        <th class="font-weight-bold text-center">#</th>
+                        <th class="font-weight-bold text-center">Report Id</th>
+                        <th class="font-weight-bold text-center">Student Name</th>
+                        <th class="font-weight-bold text-center">Parent Name</th>
+                        <th class="font-weight-bold text-center">School Level</th>
+                        <th class="font-weight-bold text-center">School Name</th>
+                        <th class="font-weight-bold text-center">Location</th>
+                        <th class="font-weight-bold text-center">Amount Awarded</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(val, index) in data" :key="val.id">
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ val.report_id }}</td>
+                        <td>{{ val.student_name }}</td>
+                        <td>{{ val.parent }}</td>
+                        <td>{{ val.school_level }}</td>
+                        <td>{{ val.school_name }}</td>
+                        <td>{{ val.location }}</td>
+                        <td>{{ val.Amount_awarded }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
   </div>  
 </template>
@@ -37,6 +112,9 @@ export default {
           isSubmenuExpanded: {
               1: false,
               2: false,
+              data: [], // Replace with your actual data
+              selectedLocation: '',
+              formattedNumber: 0, // Replace with your formatted number
           },
       };
   },
@@ -87,7 +165,23 @@ methods:{
   toggleSubmenu(id) {
     this.isSubmenuExpanded[id] = !this.isSubmenuExpanded[id];
   },
-}
+   // Replace with your API calls or methods
+   printAllReports() {
+      // Implement the logic to print all reports
+    },
+    openPrintByLocationModal() {
+      // Implement the logic to open the print by location modal
+    },
+    printReportsByLocation() {
+      // Implement the logic to print reports by location
+    },
+},
+created() {
+    // Fetch and set the data (replace with actual data fetching)
+    this.data = [
+      // Replace with your actual data
+    ];
+  },
 };
 
 </script>

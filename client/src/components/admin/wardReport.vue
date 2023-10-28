@@ -24,8 +24,41 @@
           </nav>
       </div>
       <!--Container Main start-->
-      <div class="height-100 bg-light">
-          <h4>WARD REPORT</h4>
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+          <div class="page-header">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active font-weight-bold" style="text-transform: uppercase;">Location Reports</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="line_graph">
+              <div v-if="message" class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="position: sticky">
+                <span class="font-weight-bold">{{ message }}</span>
+                <button type="button" class="close" @click="clearMessage" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+            <form @submit.prevent="printLocationReport">
+              <label>Select Location:</label>
+              <select v-model="selectedLocation" class="form-control">
+                <option value="">-select location-</option>
+                <option>Munyaka</option>
+                <option>Ilula</option>
+                <option>Marura</option>
+                <option>Block 10</option>
+                <option>Silas</option>
+                <option>Jerusalem</option>
+              </select>
+              <input type="submit" value="PRINT" class="btn btn-warning mt-2">
+            </form>
+          </div>
+        </div>
       </div>
   </div>  
 </template>
@@ -37,6 +70,8 @@ export default {
           isSubmenuExpanded: {
               1: false,
               2: false,
+              selectedLocation: '', // Selected location
+              message: '', // Message to display
           },
       };
   },
@@ -87,7 +122,20 @@ methods:{
   toggleSubmenu(id) {
     this.isSubmenuExpanded[id] = !this.isSubmenuExpanded[id];
   },
-}
+  printLocationReport() {
+      if (this.selectedLocation) {
+        // Implement the logic to print the location report for the selected location
+        // You can use this.selectedLocation for the selected location value
+        // Display success or error messages as needed
+        this.message = `Location report for ${this.selectedLocation} printed successfully`;
+      } else {
+        this.message = 'Please select a valid location';
+      }
+    },
+    clearMessage() {
+      this.message = ''; // Clear the message
+    },
+  },
 };
 
 </script>

@@ -24,8 +24,48 @@
           </nav>
       </div>
       <!--Container Main start-->
-      <div class="height-100 bg-light">
-          <h4>BURSARY REPORT</h4>
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+          <div class="page-header">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active font-weight-bold" style="text-transform: uppercase;">Reports</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="container col-md-8">
+              <!-- Revenue Chart -->
+              <div class="card card-chart">
+                <div class="card-body">
+                  <div id="line_graph">
+                    <div v-if="message" class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="position: sticky">
+                      <span class="font-weight-bold">{{ message }}</span>
+                      <button type="button" class="close" @click="clearMessage" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  <form @submit.prevent="printReport">
+                    <label>Select Year:</label>
+                    <select v-model="selectedYear" class="form-control">
+                      <option value="">-select year-</option>
+                      <option>2020</option>
+                      <option>2021</option>
+                      <option>2022</option>
+                      <option>2023</option>
+                      <option>2024</option>
+                    </select>
+                    <input type="submit" value="PRINT" class="btn btn-warning mt-2">
+                  </form>
+                </div>
+              </div>
+              <!-- /Revenue Chart -->
+            </div>
+          </div>
+        </div>
       </div>
   </div>  
 </template>
@@ -37,6 +77,8 @@ export default {
           isSubmenuExpanded: {
               1: false,
               2: false,
+              selectedYear: '', // Selected year
+              message: '', // Message to display
           },
       };
   },
@@ -87,6 +129,19 @@ methods:{
   toggleSubmenu(id) {
     this.isSubmenuExpanded[id] = !this.isSubmenuExpanded[id];
   },
+  printReport() {
+      if (this.selectedYear) {
+        // Implement the logic to print the report for the selected year
+        // You can use this.selectedYear for the selected year value
+        // Display success or error messages as needed
+        this.message = 'Report printed successfully';
+      } else {
+        this.message = 'Please select a valid year';
+      }
+    },
+    clearMessage() {
+      this.message = ''; // Clear the message
+    },
 }
 };
 
