@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const applicationSchema = new mongoose.Schema({
-  firstName: String,
+  firstName: {type:String},
   lastName: String,
   gender: String,
   parentalStatus: String,
@@ -23,6 +23,7 @@ const applicationSchema = new mongoose.Schema({
   sponsorInst: String,
   sponsorRelation: String,
   sponsorContact: String,
+  reference: String,
   deathCertificate: String, // You can store the file path or URL
   feeStatement: String, // You can store the file path or URL
 });
