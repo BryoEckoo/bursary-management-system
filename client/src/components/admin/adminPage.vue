@@ -1,12 +1,13 @@
 <template>
   <div id="body-pd">
-      <header class="header" id="header">
-          <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-          <h4>BURSARY MANAGEMENT SYSTEM</h4>
-      </header>
+    <header class="header" id="header">
+      <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+      <h4 class="text-center">BURSARY MANAGEMENT SYSTEM</h4>
+      <img src="../../assets/logo1.jpg" class="header_img" alt="nandi logo">
+  </header>
       <div class="l-navbar" id="nav-bar">
           <nav class="nav">
-              <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">BBBootstrap</span> </a>
+              <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">EMGWEN</span> </a>
                   <div class="nav_list">
                        <a href="#" @click="$router.push('/admin/dashboard')" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
                        <a href="#" @click="$router.push('/admin/applications')" class="nav_link"> <i class='fa fa-file fa-fw nav_icon'></i> <span class="nav_name">Applications</span> </a> 
@@ -49,9 +50,6 @@
                                 <i class="fa fa-users"></i>
                               </div>
                               <div class="db-info">
-                                <h3>
-                                  {{$staff}}
-                                </h3>
                                 <h6>Staff</h6>
                               </div>										
                             </div>
@@ -230,3 +228,58 @@ export default {
 };
 
 </script>
+<style>
+.db-icon {
+  font-size: 25px;
+  width: 60px;
+  height: 60px;
+  padding: 13px 21px;
+  border-radius: 10px;
+  color: #fff;
+}
+.bg-one .db-icon {
+  background-color: #fdbb38;
+}
+.bg-two .db-icon {
+  background-color: #19affb;
+  padding: 13px 15px;
+}
+
+.bg-three .db-icon {
+  background-color: #f46841;
+}
+
+.bg-four .db-icon {
+  background-color: #6e6bfa;
+}
+.db-info h6 {
+  margin: 0px;
+  font-weight: 400;
+}
+.card-chart .card-body {
+  padding: 8px;
+}
+.bg-one {
+  background-color: rgb(253 187 56 / 0.5);
+  border-color: #fdbb38;
+  border-radius: 30px 0px;
+}
+
+.bg-two {
+  background-color: rgb(25 175 251 / 0.2);
+  border-color: #19affb;
+  border-radius: 30px 0px;
+}
+
+.bg-three {
+  background-color: rgb(244 104 65 / 0.2);
+  border-color: #f46841;
+  border-radius: 30px 0px;
+}
+
+.bg-four {
+  background-color: rgb(110 107 250 / 0.2);
+  border-color: #6e6bfa;
+  border-radius: 30px 0px;
+}
+</style>

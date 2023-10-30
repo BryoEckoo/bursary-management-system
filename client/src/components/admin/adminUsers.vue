@@ -247,37 +247,37 @@ export default {
         this.errorMessage = 'Please fill in all required fields';
       }
     },
-    editUser(id) {
-      const user = this.users.find((u) => u.id === id);
-      if (user && user.fullname && user.email && user.phone && user.role) {
-       //user="";
-       const fullname = user.fullname;
-       user.email="";
-       user.phone="";
-       user.role="";
-       // Implement the logic to edit the user
-        // Update user data in the this.users array
-        // Display a success message
-        //user.role = user.role; // Change user role accordingly
-        this.successMessage = 'User details updated successfully';
-      } else {
-        this.errorMessage = 'Please fill in all required fields';
-      }
-    },
-    clearNewUserForm() {
-      this.newUser = {
-        fullname: '',
-        email: '',
-        phone: '',
-        role: '',
-      };
-    },
-    clearSuccessMessage() {
-      this.successMessage = '';
-    },
-    clearErrorMessage() {
-      this.errorMessage = '';
-    },
+    // editUser(id) {
+    //   const user = this.users.find((u) => u.id === id);
+    //   if (user && user.fullname && user.email && user.phone && user.role) {
+    //    //user="";
+    //    const fullname = user.fullname;
+    //    user.email="";
+    //    user.phone="";
+    //    user.role="";
+    //    // Implement the logic to edit the user
+    //     // Update user data in the this.users array
+    //     // Display a success message
+    //     //user.role = user.role; // Change user role accordingly
+    //     this.successMessage = 'User details updated successfully';
+    //   } else {
+    //     this.errorMessage = 'Please fill in all required fields';
+    //   }
+    // },
+    // clearNewUserForm() {
+    //   this.newUser = {
+    //     fullname: '',
+    //     email: '',
+    //     phone: '',
+    //     role: '',
+    //   };
+    // },
+    // clearSuccessMessage() {
+    //   this.successMessage = '';
+    // },
+    // clearErrorMessage() {
+    //   this.errorMessage = '';
+    // },
   }
 };
 
