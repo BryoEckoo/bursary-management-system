@@ -3,7 +3,7 @@
     <header class="header" id="header">
       <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
       <h4 class="text-center">BURSARY MANAGEMENT SYSTEM</h4>
-      <img src="../../assets/logo1.jpg" class="header_img" alt="nandi logo">
+      <img src="../../src/assets/logo1.jpg" class="header_img" alt="nandi logo">
   </header>
       <div class="l-navbar" id="nav-bar">
           <nav class="nav">
@@ -18,14 +18,14 @@
                           <a href="#" @click="$router.push('/admin/reports/bursary')"  class="nav_link"> <i class='fa fa-shopping-cart fa-fw nav_icon'></i> <span class="nav_name">Bursary Reports</span> </a>
                           <a href="#" @click="$router.push('/admin/reports/wards')"  class="nav_link"> <i class='fa-solid fa-earth-oceania fa-fw nav_icon'></i> <span class="nav_name">Wards Reports</span> </a>
                        </div> 
-                       <a href="#" class="nav_link"> <i class='fa-solid fa-user nav_icon'></i> <span class="nav_name">Users</span> </a>  
+                       <a href="#" @click="$router.push('/admin/reports/wards')" class="nav_link"> <i class='fa-solid fa-user nav_icon'></i> <span class="nav_name">Users</span> </a>  
                   </div>
               </div> 
               <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
           </nav>
       </div>
       <!--Container Main start-->
-      <div class="height-100 bg-light">
+      <div class="height-100 bg-light body">
           <h4>Main Components</h4>
           <div>
               <div class="page-wrapper">
@@ -50,7 +50,7 @@
                                 <i class="fa fa-users"></i>
                               </div>
                               <div class="db-info">
-                                <h6>Staff</h6>
+                                <h6>Users</h6>
                               </div>										
                             </div>
                           </div>
@@ -83,10 +83,7 @@
                                 <i class="fa fa-receipt"></i>
                               </div>
                               <div class="db-info">
-                                <h3>
-                                  {{$application}}
-                                </h3>
-                                <h6>Today's Applications</h6>
+                                <h6>Applications</h6>
                               </div>										
                             </div>
                           </div>
@@ -101,9 +98,6 @@
                                 <i class="fa fa-window-close"></i>
                               </div>
                               <div class="db-info">
-                                <h3>
-                                  
-                                </h3>
                                 <h6>Today's Rollout</h6>
                               </div>										
                             </div>
@@ -112,7 +106,7 @@
                       </div>
                     </div>
             
-                    <div class="row">
+                    <div class="row mt-4">
                       <div class="col-md-12">
                         <!-- Revenue Chart -->
                         <div class="card card-chart">
@@ -167,7 +161,7 @@
       </div>
   </div>  
 </template>
-<script>
+<script scoped>
 export default {
     data(){
         return{
@@ -282,4 +276,181 @@ export default {
   border-color: #6e6bfa;
   border-radius: 30px 0px;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+  --first-color: #f7f7fa;
+  --first-color-light: #6f6f6f;
+  --white-color: #18aefa;
+  --body-font: 'Nunito', sans-serif;
+  --normal-font-size: 1rem;
+  --z-fixed: 100;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+
+a {
+  text-decoration: none;
+}
+
+.header {
+  width: 100%;
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background-color: var(--first-color);
+  z-index: var(--z-fixed);
+  transition: 0.5s;
+}
+
+.header_toggle {
+  color: var(--white-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.header_img {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.header_img img {
+  width: 40px;
+}
+
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: -30%;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--first-color);
+  padding: 0.5rem 1rem 0 0;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.nav_logo,
+.nav_link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 1rem;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+}
+
+.nav_logo {
+  margin-bottom: 2rem;
+}
+
+.nav_logo-icon {
+  font-size: 1.25rem;
+  color: var(--white-color);
+}
+
+.nav_logo-name {
+  color: var(--white-color);
+  font-weight: 700;
+}
+
+.nav_link {
+  position: relative;
+  color: var(--first-color-light);
+  margin-bottom: 1.5rem;
+  transition: 0.3s;
+}
+
+.nav_link:hover {
+  color: var(--white-color);
+}
+
+.nav_icon {
+  font-size: 1.25rem;
+}
+
+.show {
+  left: 0;
+}
+
+.body-pd {
+  padding-left: calc(var(--nav-width) + 1rem);
+}
+
+.active {
+  color: var(--white-color);
+}
+
+.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 2px;
+  height: 32px;
+  background-color: var(--white-color);
+}
+
+.height-100 {
+  height: 100vh;
+}
+
+@media screen and (min-width: 768px) {
+  .body {
+    margin: calc(var(--header-height) + 1rem) 0 0 0;
+    padding-left: calc(var(--nav-width) + 2rem);
+  }
+
+  .header {
+    height: calc(var(--header-height) + 1rem);
+    padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+  }
+
+  .header_img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header_img img {
+    width: 45px;
+  }
+
+  .l-navbar {
+    left: 0;
+    padding: 1rem 1rem 0 0;
+  }
+
+  .show {
+    width: calc(var(--nav-width) + 156px);
+  }
+
+  .body-pd {
+    padding-left: calc(var(--nav-width) + 188px);
+  }
+}
+
 </style>

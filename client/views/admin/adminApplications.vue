@@ -3,18 +3,18 @@
       <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <h4 class="text-center">BURSARY MANAGEMENT SYSTEM</h4>
-        <img src="../../assets/logo1.jpg" class="header_img" alt="nandi logo">
+        <img src="../../src/assets/logo1.jpg" class="header_img" alt="nandi logo">
       </header>
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
                 <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">BBBootstrap</span> </a>
                     <div class="nav_list">
                          <a href="#" @click="$router.push('/admin/dashboard')" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
-                         <a href="#" @click="$router.push('/admin/applications')" class="nav_link"> <i class='fa fa-file fa-fw nav_icon'></i> <span class="nav_name">Applications</span> </a> 
+                         <a href="#" @click="$router.push('/admin/applications')" class="nav_link active"> <i class='fa fa-file fa-fw nav_icon'></i> <span class="nav_name">Applications</span> </a> 
                          <a href="#" @click="$router.push('/admin/beneficiaries')" class="nav_link"> <i class='fa fa-users fa-fw nav_icon'></i> <span class="nav_name">Beneficiaries</span> </a> 
                          <a href="#" @click="toggleSubmenu(1)" class="nav_link active"> <i class='fa-solid fa-file-lines nav_icon'></i> <span class="nav_name">Reports</span> <span class="ml-auto" v-if="isSubmenuExpanded[1]"></span> </a> 
                          <div v-if="isSubmenuExpanded[1]">
-                            <a href="#" @click="$router.push('/admin/reports/amount')"  class="nav_link active"> <i class='fa fa-money-bill fa-fw nav_icon'></i> <span class="nav_name">Amount Reports</span> </a>
+                            <a href="#" @click="$router.push('/admin/reports/amount')"  class="nav_link"> <i class='fa fa-money-bill fa-fw nav_icon'></i> <span class="nav_name">Amount Reports</span> </a>
                             <a href="#" @click="$router.push('/admin/reports/bursary')"  class="nav_link"> <i class='fa fa-shopping-cart fa-fw nav_icon'></i> <span class="nav_name">Bursary Reports</span> </a>
                             <a href="#" @click="$router.push('/admin/reports/wards')"  class="nav_link"> <i class='fa-solid fa-earth-oceania fa-fw nav_icon'></i> <span class="nav_name">Wards Reports</span> </a>
                          </div> 
@@ -25,7 +25,7 @@
             </nav>
         </div>
         <!--Container Main start-->
-        <div class="height-100 bg-light">
+        <div class="height-100 bg-light body">
             <div class="page-wrapper">
               <div class="content container-fluid">
                 <div class="page-header">

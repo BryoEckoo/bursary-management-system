@@ -3,7 +3,7 @@
     <header class="header" id="header">
       <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
       <h4 class="text-center">BURSARY MANAGEMENT SYSTEM</h4>
-      <img src="../../assets/logo1.jpg" class="header_img" alt="nandi logo">
+      <img src="../../src/assets/logo1.jpg" class="header_img" alt="nandi logo">
   </header>
       <div class="l-navbar" id="nav-bar">
           <nav class="nav">
@@ -25,7 +25,7 @@
           </nav>
       </div>
       <!--Container Main start-->
-      <div class="page-wrapper">
+      <div class="page-wrapper body">
         <div class="content container-fluid">
           <div class="page-header">
             <div class="row">

@@ -3,8 +3,8 @@
     <header class="header" id="header">
       <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
       <h4 class="text-center">BURSARY MANAGEMENT SYSTEM</h4>
-      <img src="../../assets/logo1.jpg" class="header_img" alt="nandi logo">
-    </header>
+      <img src="../../src/assets/logo1.jpg" class="header_img" alt="nandi logo">
+  </header>
       <div class="l-navbar" id="nav-bar">
           <nav class="nav">
               <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">BBBootstrap</span> </a>
@@ -25,7 +25,7 @@
           </nav>
       </div>
       <!--Container Main start-->
-      <div class="height-100 bg-light">
+      <div class="height-100 bg-light body">
           <h4>BENEFICIARIES</h4>
           <div class="page-wrapper">
             <div class="content container-fluid">

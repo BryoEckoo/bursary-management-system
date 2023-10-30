@@ -288,7 +288,7 @@
             <div class="col-sm-6">
                 <div class="form-group row">
                     <p class="col-md-4">Fee statement *:</p>
-                    <input class="col-md-8" type="file" @change="onFileChange('feeStatement')" required="required" id="feeStatement" name="feeStatement"><br>
+                    <input class="col-md-8" type="file" @change="onFileChange('feeStatement')" id="feeStatement" name="feeStatement"><br>
                 </div>
             </div>
         </div>
@@ -360,32 +360,58 @@ export default {
     }
       try {
         // Create an object with the form data
-        const formData = new FormData();
+        const formData = {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          gender: this.gender,
+          parentalStatus: this.parentalStatus,
+          parentName: this.parentName,
+          occupation: this.occupation,
+          familyIncome: this.familyIncome,
+          userId: this.userId,
+          userEmail: this.userEmail,
+          specialNeed: this.specialNeed,
+          ward: this.ward,
+          category: this.category,
+          instTelephone: this.instTelephone,
+          instType: this.instType,
+          instName: this.instName,
+          currentClass: this.currentClass,
+          admissionNo: this.admissionNo,
+          bankName: this.bankName,
+          sponsorInst: this.sponsorInst,
+          sponsorRelationship: this.sponsorRelationship,
+          sponsorContact: this.sponsorContact,
+          // deathCertificate: this.selectedDeathCertificate);
+          // feeStatement: this.selectedFeeStatement)
+
+
+        }
 
         // Add form fields to formData
-        formData.append('firstName', this.firstName);
-        formData.append('lastName', this.lastName);
-        formData.append('gender', this.gender);
-        formData.append('parentalStatus', this.parentalStatus);
-        formData.append('parentName', this.parentName);
-        formData.append('occupation', this.occupation);
-        formData.append('familyIncome', this.familyIncome);
-        formData.append('userId', this.userId);
-        formData.append('userEmail', this.userEmail);
-        formData.append('specialNeed', this.specialNeed);
-        formData.append('ward', this.ward);
-        formData.append('category', this.category);
-        formData.append('instTelephone', this.instTelephone);
-        formData.append('instType', this.instType);
-        formData.append('instName', this.instName);
-        formData.append('currentClass', this.currentClass);
-        formData.append('admissionNo', this.admissionNo);
-        formData.append('bankName', this.bankName);
-        formData.append('sponsorInst', this.sponsorInst);
-        formData.append('sponsorRelationship', this.sponsorRelationship);
-        formData.append('sponsorContact', this.sponsorContact);
-        formData.append('deathCertificate', this.selectedDeathCertificate);
-        formData.append('feeStatement', this.selectedFeeStatement);
+        // formData.append('firstName', this.firstName);
+        // formData.append('lastName', this.lastName);
+        // formData.append('gender', this.gender);
+        // formData.append('parentalStatus', this.parentalStatus);
+        // formData.append('parentName', this.parentName);
+        // formData.append('occupation', this.occupation);
+        // formData.append('familyIncome', this.familyIncome);
+        // formData.append('userId', this.userId);
+        // formData.append('userEmail', this.userEmail);
+        // formData.append('specialNeed', this.specialNeed);
+        // formData.append('ward', this.ward);
+        // formData.append('category', this.category);
+        // formData.append('instTelephone', this.instTelephone);
+        // formData.append('instType', this.instType);
+        // formData.append('instName', this.instName);
+        // formData.append('currentClass', this.currentClass);
+        // formData.append('admissionNo', this.admissionNo);
+        // formData.append('bankName', this.bankName);
+        // formData.append('sponsorInst', this.sponsorInst);
+        // formData.append('sponsorRelationship', this.sponsorRelationship);
+        // formData.append('sponsorContact', this.sponsorContact);
+        // formData.append('deathCertificate', this.selectedDeathCertificate);
+        // formData.append('feeStatement', this.selectedFeeStatement);
 
         // Send a POST request to your backend API
         const response = await axios.post(`${APIURL}/applications/submit`, formData);
@@ -393,7 +419,7 @@ export default {
         if (response.data.success) {
           // Handle success, e.g., show a success message
           alert('Application submitted successfully');
-          this.$router.push('/profile')
+          //this.$router.push('/profile')
         } else {
           // Handle errors, e.g., show an error message
           alert('Error submitting application');
@@ -403,19 +429,19 @@ export default {
         console.error(error);
         alert('An error occurred. Please try again.');
       }
-      // Send a POST request to your backend API for documents
-      const docData = new FormData();
-      docData.append('deathCertificate', this.selectedDeathCertificate);
-      docData.append('feeStatement', this.selectedFeeStatement);
+      // // Send a POST request to your backend API for documents
+      // const docData = new FormData();
+      // docData.append('deathCertificate', this.selectedDeathCertificate);
+      // docData.append('feeStatement', this.selectedFeeStatement);
 
-      try {
-        await axios.post(`${APIURL}/documents/upload`, docData);
-        // Handle the document data response if needed
-      } catch (docError) {
-        // Handle any errors related to document submission
-        console.error('Error uploading documents:', docError);
-        // Optionally, show an error message to the user
-      }
+      // try {
+      //   await axios.post(`${APIURL}/documents/upload`, docData);
+      //   // Handle the document data response if needed
+      // } catch (docError) {
+      //   // Handle any errors related to document submission
+      //   console.error('Error uploading documents:', docError);
+      //   // Optionally, show an error message to the user
+      // }
     },
   },
 };
