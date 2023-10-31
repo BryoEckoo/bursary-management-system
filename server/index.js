@@ -5,17 +5,17 @@ const cors = require('cors');
 const bodyparser = require('body-parser');
 const passport = require('passport');
 require('dotenv').config();
-const port = process.env.PORT || 4000;
+const port = process.env.APIURL ;
 const db = process.env.mongoURL;
 
 // Middleware
 // JSON body middleware should come first
-app.use(bodyparser.json());
+app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(cors());
-app.use(cors({
-  origin: 'https://vercel.com/bryoeckoo/bursary-management-system-api'
-}));
+// app.use(cors({
+//   origin: 'https://vercel.com/bryoeckoo/bursary-management-system-api'
+// }));
 
  
 
