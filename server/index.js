@@ -5,7 +5,7 @@ const cors = require('cors');
 const bodyparser = require('body-parser');
 const passport = require('passport');
 require('dotenv').config();
-const port = process.env.APIURL ;
+const port = 8000;
 const db = process.env.mongoURL;
 
 // Middleware
