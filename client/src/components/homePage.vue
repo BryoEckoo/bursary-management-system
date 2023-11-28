@@ -57,7 +57,6 @@
 </template>
 <script>
 import axios from "axios";
-import {APIURL} from '../../../server/config/key'
 
 export default{
   name:'HomePage',
@@ -71,6 +70,7 @@ export default{
   },
   methods: {
     async login() {
+      const APIURL= process.env.VUE_APP_APIURL;
       const { email, password } = this.form;
       if (!email || !password) {
         alert("Username and password are required");

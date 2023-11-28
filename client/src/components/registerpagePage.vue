@@ -38,7 +38,6 @@
 // Import Axios library
 
 import axios from 'axios';
-import {APIURL} from '../../../server/config/key'
 import router from '@/router';
 
 export default {
@@ -53,6 +52,7 @@ export default {
   },
   methods: {
     async register(){
+      const APIURL= process.env.VUE_APP_APIURL;
       const { email, password } = this.form;
       if (!email || !password) {
         alert("Username and password required");
