@@ -27,7 +27,7 @@
     "multer": "^1.4.5-lts.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
-    "vercel": "^32.5.0"
+    "vercel": "^32.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",

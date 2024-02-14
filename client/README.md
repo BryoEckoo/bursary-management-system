@@ -1,4 +1,4 @@
-# bursery-allocation-system
+# bursary-management-system
 
 ## Project setup
 ```

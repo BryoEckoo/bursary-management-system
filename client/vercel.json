@@ -1,6 +1,0 @@
-{
-    "routes": [
-      { "src": "/api/(.*)", "dest": "/functions/$1.js" }
-    ]
-  }
-  

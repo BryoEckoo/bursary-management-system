@@ -3,28 +3,30 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyparser = require('body-parser');
-const passport = require('passport');
+// const passport = require('passport');
 require('dotenv').config();
-const port = 8000;
-const db = process.env.mongoURL;
+const PORT = 7000;
 
 // Middleware
 // JSON body middleware should come first
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(cors());
-// app.use(cors({
-//   origin: 'https://vercel.com/bryoeckoo/bursary-management-system-api'
-// }));
+
+app.use(cors({
+  origin: '*',  // Update with the correct origin of your Vue.js app
+  credentials: true,
+}));
+
 
  
 
-// Use passport middleware and define passport strategy
-app.use(passport.initialize());
-require('./config/passport')(passport);
+// // Use passport middleware and define passport strategy
+// app.use(passport.initialize());
+// require('./config/passport')(passport);
 
 // Connect to the MongoDB database
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://brian:1234@cluster0.bkbs5ip.mongodb.net/bursary-system?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Connected to MongoDB");
   })
@@ -33,18 +35,18 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   });
 
 // Define and use routes
-const users = require('./routes/register');
-app.use('/users', users);
+const register = require('./routes/register');
+app.use('/', register);
 
-const user = require('./routes/login');
-app.use('/user', user);
+const login = require('./routes/login');
+app.use('/', login);
 
 const applications = require('./routes/application');
 app.use('/applications', applications);
 
-const documents = require('./routes/documents');
-app.use('/documents', documents);
+// const documents = require('./routes/documents');
+// app.use('/documents', documents);
 
-app.listen(port, () => {
-  console.log(`Server started at port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server started at port ${PORT}`);
 });

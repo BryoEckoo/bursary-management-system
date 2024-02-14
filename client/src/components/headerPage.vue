@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link to="/" class="nav-link active fw-bold" aria-current="page">Dashboard</router-link>
+              <router-link to="/details" class="nav-link active fw-bold" aria-current="page">Dashboard</router-link>
             </li>
            
             <li class="nav-item">

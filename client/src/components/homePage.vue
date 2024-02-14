@@ -1,3 +1,41 @@
+<script>
+import axios from "axios";
+
+export default{
+  name:'HomePage',
+  data() {
+    return {
+      form: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    async login() {
+      const APIURL= 'http://localhost:7000';
+      const { email, password } = this.form;
+      if (!email || !password) {
+        alert("Username and password are required");
+        return;
+      }
+      
+      try {
+        const {
+          data: { token },
+        } = await axios.post(`${APIURL}/login`, {
+          email,
+          password,
+        });
+        localStorage.setItem("token", token);
+        this.$router.push("/details");
+      } catch (error) {
+        alert("Invalid username or password.");
+      }
+    },
+    },
+  };
+</script>
 <template>
   <section class="ftco-section">
     <div class="container">
@@ -55,44 +93,6 @@
   </section>
   
 </template>
-<script>
-import axios from "axios";
-
-export default{
-  name:'HomePage',
-  data() {
-    return {
-      form: {
-        email: "",
-        password: "",
-      },
-    };
-  },
-  methods: {
-    async login() {
-      const APIURL= process.env.VUE_APP_APIURL;
-      const { email, password } = this.form;
-      if (!email || !password) {
-        alert("Username and password are required");
-        return;
-      }
-      
-      try {
-        const {
-          data: { token },
-        } = await axios.post(`${APIURL}/user/login`, {
-          email,
-          password,
-        });
-        localStorage.setItem("token", token);
-        this.$router.push("/details");
-      } catch (error) {
-        alert("Invalid username or password.");
-      }
-    },
-    },
-  };
-</script>
 <style>
 .six{
   background-image: url(../assets/students.jpg);

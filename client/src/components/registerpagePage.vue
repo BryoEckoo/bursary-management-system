@@ -1,3 +1,41 @@
+<script>
+// Import Axios library
+
+import axios from 'axios';
+import router from '@/router';
+
+export default {
+  name: 'registerPage',
+  data() {
+    return {
+      form:{
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    async register(){
+      const APIURL= 'http://localhost:7000';
+      const { email, password } = this.form;
+      if (!email || !password) {
+        alert("Username and password required");
+      }
+      try {
+        await axios.post(`${APIURL}/register`, {
+          email,
+          password,
+        });
+        router.push('/');
+        alert('registration successful');
+      } catch (error){
+        console.log(error);
+        alert("registration failed.");
+      }
+    },
+  },
+};
+</script>
 <template>
   <div>
     <div class="registration row-md-5 row-lg-6 mt-4">
@@ -23,7 +61,6 @@
                   <input type="password" id="password" class="form-control" v-model="form.password" name="password" placeholder="Password" autocomplete="current-password" required>
                 </div>
               </div>
-              <input type="hidden" name="_csrf_token" value="f9762c9.pk7O-twetHP3t17lExefTz64-IrXimtJgaMONUz3fgc.lBm7gpFT0ja9_QfcKifHBH_Lj8au4z0T1MB7f3yEHHLSOPm7qV_QF57Oag">
               <div class="form-group text-center mt-2">
                 <button class="btn btn-primary proceed" @click.prevent="register()">REGISTER</button>
               </div>
@@ -34,41 +71,3 @@
   </div>
 </template>
 
-<script>
-// Import Axios library
-
-import axios from 'axios';
-import router from '@/router';
-
-export default {
-  name: 'registerPage',
-  data() {
-    return {
-      form:{
-        email: "",
-        password: "",
-      },
-    };
-  },
-  methods: {
-    async register(){
-      const APIURL= process.env.VUE_APP_APIURL;
-      const { email, password } = this.form;
-      if (!email || !password) {
-        alert("Username and password required");
-      }
-      try {
-        await axios.post(`${APIURL}/users/register`, {
-          email,
-          password,
-        });
-        router.push('/');
-        alert('registration successful');
-      } catch (error){
-        console.log(error);
-        alert("registration failed.");
-      }
-    },
-  },
-};
-</script>

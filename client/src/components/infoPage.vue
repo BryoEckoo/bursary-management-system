@@ -1,6 +1,6 @@
 <template>
     <div class="info text-center" style="display: flex; justify-content: center; align-items: center;">
-        <h4 class="text-center info-text">Kindly complete the application first</h4>
+        <h6 class="text-center info-text"><span style="font-weight: 700;">Welcome! Brian Rono</span>, please take your time to fill the application before submitting.</h6>
     </div>
 </template>
 <script>
@@ -14,9 +14,8 @@ export default{
 }
 .info{
     background-color: #4cf344;
-    padding: 40px;
-    margin-bottom: 20px;
-    height: 50px;
+    padding: 30px;
+    height: 20px;
 }
 .info-text{
     
