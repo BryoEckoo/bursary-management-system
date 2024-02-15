@@ -4,7 +4,7 @@
       <div class="col-md-4 text-center">
         <img src="../assets/ke.png" class="h-25 w-25" alt="Kenya Logo">
       </div>
-      <div class="container-block text-center col-md-4">
+      <div class="container-block text-center col-md-4" style="margin-left:20px;">
         <h4 class="text-center">COUNTY GOVERNMENT OF NANDI</h4>
         <h5 class="text-center">BURSARY MANAGEMENT SYSTEM</h5>
       </div>
