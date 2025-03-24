@@ -27,7 +27,7 @@ export default{
           email,
           password,
         });
-        localStorage.setItem("token", token);
+        localStorage.setItem("authtoken", token);
         this.$router.push("/details");
       } catch (error) {
         alert("Invalid username or password.");

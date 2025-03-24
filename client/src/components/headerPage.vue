@@ -30,7 +30,7 @@
               <router-link to="/profile" class="nav-link fw-bold">My Profile</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/" class="nav-link fw-bold">Logout</router-link>
+              <router-link @click="logout" class="nav-link fw-bold">Logout</router-link>
             </li>
           </ul>
         </div>
@@ -43,16 +43,24 @@
   
 </template>
 <script>
-export default{
-    name:'HeaderPage',
-    data() {
+export default {
+  name: 'HeaderPage',
+  data() {
     return {
       isFixedNav: false,
     };
   },
- 
+  methods: {
+    logout() {
+      // Remove the session token
+      localStorage.removeItem('authToken');
+      // Redirect to the login page using Vue Router
+      this.$router.push('/login');
+    }
+  }
 }
 </script>
+
 <style>
 
 .menu{
