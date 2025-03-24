@@ -51,6 +51,8 @@ export default {
     };
   },
   methods: {
+    //logout session
+    
     logout() {
       // Remove the session token
       localStorage.removeItem('authToken');
