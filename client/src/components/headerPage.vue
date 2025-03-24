@@ -30,7 +30,7 @@
               <router-link to="/profile" class="nav-link fw-bold">My Profile</router-link>
             </li>
             <li class="nav-item">
-              <router-link @click="logout" class="nav-link fw-bold">Logout</router-link>
+              <div> <button @click="logout" class="nav-link fw-bold">Logout</button> </div>
             </li>
           </ul>
         </div>
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     //logout session
-    
+
     logout() {
       // Remove the session token
       localStorage.removeItem('authToken');
